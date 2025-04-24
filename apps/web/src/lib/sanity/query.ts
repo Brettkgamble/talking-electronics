@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { defineQuery } from "next-sanity";
 
 // Base fragments for reusable query parts
@@ -146,6 +147,16 @@ const subscribeNewsletterBlock = /* groq */ `
   }
 `;
 
+const featuredBlogBlock = /* groq */ `
+  _type == "featuredBlog" => {
+    blog[0]->{
+      ...,
+      ${blogCardFragment}
+    },
+    title,
+  }
+`;
+
 const pageBuilderFragment = /* groq */ `
   pageBuilder[]{
     ...,
@@ -153,6 +164,7 @@ const pageBuilderFragment = /* groq */ `
     ${ctaBlock},
     ${heroBlock},
     ${faqAccordionBlock},
+    ${featuredBlogBlock},
     ${subscribeNewsletterBlock},
     ${imageLinkCardsBlock}
   }
