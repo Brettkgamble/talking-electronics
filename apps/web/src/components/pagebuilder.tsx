@@ -10,6 +10,7 @@ import type { PagebuilderType } from "@/types";
 import { CTABlock } from "./sections/cta";
 import { FaqAccordion } from "./sections/faq-accordion";
 import { FeatureCardsWithIcon } from "./sections/feature-cards-with-icon";
+import { FeaturedBlog } from "./sections/featuredBlog";
 import { HeroBlock } from "./sections/hero";
 import { ImageLinkCards } from "./sections/image-link-cards";
 import { SubscribeNewsletter } from "./sections/subscribe-newsletter";
@@ -35,6 +36,7 @@ const BLOCK_COMPONENTS = {
   faqAccordion: FaqAccordion,
   hero: HeroBlock,
   featureCardsIcon: FeatureCardsWithIcon,
+  featuredBlog: FeaturedBlog,
   subscribeNewsletter: SubscribeNewsletter,
   imageLinkCards: ImageLinkCards,
 } as const;
