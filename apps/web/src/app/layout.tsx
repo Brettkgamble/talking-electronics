@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import "@workspace/ui/globals.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
@@ -22,7 +23,7 @@ const fontGeist = Geist({
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-space-mono",
   weight: ["400", "700"],
   display: "optional",
 });
