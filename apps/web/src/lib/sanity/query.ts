@@ -5,9 +5,11 @@ import { defineQuery } from "next-sanity";
 const imageFragment = /* groq */ `
   image{
     ...,
-    "alt": coalesce(asset->altText, asset->originalFilename, "Image-Broken"),
-    "blurData": asset->metadata.lqip,
-    "dominantColor": asset->metadata.palette.dominant.background,
+    ...asset->{
+      "alt": coalesce(altText, originalFilename, "no-alt"),
+      "blurData": metadata.lqip,
+      "dominantColor": metadata.palette.dominant.background
+    },
   }
 `;
 
@@ -170,6 +172,17 @@ const pageBuilderFragment = /* groq */ `
   }
 `;
 
+/**
+ * Query to extract a single image from a page document
+ * This is used as a type reference only and not for actual data fetching
+ * Helps with TypeScript inference for image objects
+ */
+export const queryImageType = defineQuery(`
+  *[_type == "page" && defined(image)][0]{
+    ${imageFragment}
+  }.image
+`);
+
 export const queryHomePageData =
   defineQuery(`*[_type == "homePage" && _id == "homePage"][0]{
     ...,
@@ -286,10 +299,7 @@ export const queryFooterData = defineQuery(`
           url.href
         ),
       }
-    },
-    "logo": *[_type == "settings"][0].logo.asset->url + "?w=80&h=40&dpr=3&fit=max",
-    "siteTitle": *[_type == "settings"][0].siteTitle,
-    "socialLinks": *[_type == "settings"][0].socialLinks,
+    }
   }
 `);
 
@@ -327,8 +337,6 @@ export const queryNavbarData = defineQuery(`
       }
     },
     ${buttonsFragment},
-    "logo": *[_type == "settings"][0].logo.asset->url + "?w=80&h=40&dpr=3&fit=max",
-    "siteTitle": *[_type == "settings"][0].siteTitle,
   }
 `);
 
@@ -342,12 +350,19 @@ export const querySitemapData = defineQuery(`{
     "lastModified": _updatedAt
   }
 }`);
-
 export const queryGlobalSeoSettings = defineQuery(`
   *[_type == "settings"][0]{
     _id,
     _type,
     siteTitle,
+    logo{
+      ...,
+      ...asset->{
+        "alt": coalesce(altText, originalFilename, "no-alt"),
+        "blurData": metadata.lqip,
+        "dominantColor": metadata.palette.dominant.background
+      }
+    },
     siteDescription,
     socialLinks{
       linkedin,
