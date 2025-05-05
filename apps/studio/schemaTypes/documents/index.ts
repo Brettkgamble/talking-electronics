@@ -9,5 +9,4 @@ import { page } from "./page";
 import { settings } from "./settings";
 
 export const singletons = [homePage, blogIndex, settings, footer, navbar];
-
 export const documents = [blog, page, faq, author, ...singletons];

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { assist } from "@sanity/assist";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
