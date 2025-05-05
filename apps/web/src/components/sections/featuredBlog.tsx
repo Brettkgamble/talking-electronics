@@ -37,7 +37,7 @@ export function FeaturedBlog({
               </h1>
               <RichText
                 richText={blog?.richText}
-                className="text-base md:text-lg font-normal"
+                className="text-base line-clamp-6 md:text-lg font-normal"
               />
             </div>
           </div>
