@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { defineCliConfig } from "sanity/cli";
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
@@ -11,7 +12,7 @@ export default defineCliConfig({
   },
   studioHost:
     host && host !== "main"
-      ? `${host}-turbo-start-sanity`
-      : "turbo-start-sanity",
+      ? `${host}-talking-electronics`
+      : "talking-electronics",
   autoUpdates: false,
 });
