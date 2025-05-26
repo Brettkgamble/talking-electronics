@@ -35,7 +35,7 @@ export default defineConfig({
         locations,
       },
       previewUrl: {
-        origin: presentationOriginUrl ?? "http://localhost:3000",
+        origin: presentationOriginUrl ?? "https://talking-electronics-web.vercel.app/",
         previewMode: {
           enable: "/api/presentation-draft",
         },
